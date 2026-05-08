@@ -52,7 +52,7 @@ body {
 
 /* Profile Image Frame */
 .profile-frame {
-    width: 500px;
+    width: 400px;
     height: 500px;
     border: 2px solid var(--primary-cyan);
     border-radius: 15px;
