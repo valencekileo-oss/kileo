@@ -1,0 +1,331 @@
+:root {
+    --bg-color: #050505;
+    --text-color: #00ff41;
+    --primary-cyan: #00f3ff;
+    --accent-magenta: #ff003c;
+    --terminal-bg: rgba(10, 15, 10, 0.85);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Share Tech Mono', monospace;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Matrix Background Canvas */
+#matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.25;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+}
+
+/* Profile Image Frame */
+.profile-frame {
+    width: 500px;
+    height: 500px;
+    border: 2px solid var(--primary-cyan);
+    border-radius: 15px;
+    padding: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 20px var(--primary-cyan), inset 0 0 20px rgba(0, 243, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.profile-frame:hover {
+    box-shadow: 0 0 30px var(--primary-cyan), inset 0 0 30px var(--primary-cyan);
+    transform: scale(1.02);
+}
+
+.photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    background-image: url('myphoto.jpg'); 
+
+}
+
+/* Hide placeholder text when image is added via css above */
+.photo-placeholder[style*="background-image"] .photo-text {
+    display: none;
+}
+
+.photo-text {
+    color: var(--primary-cyan);
+    font-size: 0.9rem;
+    text-align: center;
+    animation: blink 2s infinite;
+    padding: 10px;
+}
+
+.hero-text {
+    margin-top: 1rem;
+}
+
+/* Glitch Effect */
+.glitch {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    color: white;
+    text-shadow: 0 0 10px var(--primary-cyan);
+    margin-bottom: 0.5rem;
+}
+
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-magenta);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--primary-cyan);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(21px, 9999px, 99px, 0); }
+    20% { clip: rect(84px, 9999px, 15px, 0); }
+    40% { clip: rect(100px, 9999px, 44px, 0); }
+    60% { clip: rect(31px, 9999px, 89px, 0); }
+    80% { clip: rect(65px, 9999px, 11px, 0); }
+    100% { clip: rect(15px, 9999px, 73px, 0); }
+}
+
+.typewriter-container {
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typewriter {
+    font-size: 1.5rem;
+    color: var(--primary-cyan);
+}
+
+.cursor {
+    animation: blink 1s step-end infinite;
+}
+
+/* Terminal Window */
+.terminal-window {
+    background: var(--terminal-bg);
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(0, 255, 65, 0.15);
+    overflow: hidden;
+    margin-bottom: 4rem;
+    backdrop-filter: blur(8px);
+}
+
+.terminal-header {
+    background: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.close { background: #ff5f56; }
+.minimize { background: #ffbd2e; }
+.maximize { background: #27c93f; }
+
+.terminal-title {
+    color: #888;
+    margin-left: 20px;
+    font-size: 0.95rem;
+}
+
+.terminal-body {
+    padding: 25px;
+    font-size: 1.1rem;
+}
+
+.prompt {
+    color: var(--accent-magenta);
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.output {
+    color: #dfdfdf;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    padding-left: 20px;
+    border-left: 2px solid #333;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    border: none;
+    padding-left: 0;
+}
+
+.skill-category {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    padding: 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+    border-color: var(--primary-cyan);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    transform: translateY(-3px);
+    background: rgba(0, 243, 255, 0.05);
+}
+
+.skill-category h3 {
+    color: var(--primary-cyan);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    border-bottom: 1px dashed #333;
+    padding-bottom: 5px;
+}
+
+.skill-category ul {
+    list-style: none;
+}
+
+.skill-category li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+    color: #ccc;
+}
+
+.skill-category li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--text-color);
+}
+
+/* Contact Links */
+.contact-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    border: none;
+    padding-left: 0;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: var(--primary-cyan);
+    border: 1px solid var(--primary-cyan);
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-btn:hover {
+    background-color: var(--primary-cyan);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px var(--primary-cyan);
+    transform: translateY(-2px);
+}
+
+.status-blinker {
+    color: var(--text-color);
+    animation: blink 2s infinite;
+}
+
+.cursor-blink {
+    background-color: var(--text-color);
+    color: transparent;
+    animation: blink 1s step-end infinite;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #555;
+    border-top: 1px solid #222;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .glitch { font-size: 2.2rem; }
+    .typewriter { font-size: 1.1rem; }
+    .container { padding: 1rem; }
+    .terminal-body { padding: 15px; font-size: 1rem; }
+}
