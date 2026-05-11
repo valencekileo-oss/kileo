@@ -434,4 +434,8 @@ footer {
     .typewriter { font-size: 1.1rem; }
     .container { padding: 1rem; }
     .terminal-body { padding: 15px; font-size: 1rem; }
+    .profile-frame {
+        width: 250px;
+        height: 250px;
+    }
 }
